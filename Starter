@@ -1,0 +1,9 @@
+//this is the script I started my work from.
+
+on("chat:message", function(msg) {
+  //This allows players to enter !sr <number> to roll a number of d6 dice with a target of 4.
+  if(msg.type == "api" && msg.content.indexOf("!sr ") !== -1) {
+    var numdice = msg.content.replace("!sr ", "");
+    sendChat(msg.who, "/roll " + numdice + "d6>4");
+  }
+});
