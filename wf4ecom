@@ -3,20 +3,17 @@ All creative credit to GW and Cubicle 7
 I'm just a code slave who hammered this crap out.
 I'm sure there's a better way... I just don't know how to do it.
 Feel free to make improvements.
--Sethwms
+-Coogerbate
 
-!critloc
-!oops
-!crithead
-!critbody
-!critarm
-!critleg
-!help
+P.S. Thanks to Jonah, Phoenix35, and ((())) from Coding Core Discord for the help!
+
+!help for help
 */
 
 on("chat:message", function(msg) {
-    if(msg.type == "api" && msg.content == ("!critloc")) {
-    var loc = Math.floor(Math.random() * 100) + 1;
+    if (msg.type === "api" && msg.content.startsWith("!critloc")) {
+    const loc = msg.content.split(/\s+/u)[1] || Math.floor(Math.random() * 100) +1;
+    
     if (loc <= 9){
         var locmsg = "Your blow strikes your opponent's head.";
     }
@@ -42,8 +39,9 @@ on("chat:message", function(msg) {
     }
     sendChat(msg.who, loc + "%, " + locmsg);
   }
-  else if(msg.type == "api" && msg.content == ("!oops")) {
-    var oops = Math.floor(Math.random() * 100) + 1;
+  else if (msg.type === "api" && msg.content.startsWith("!oops")) {
+    const oops = msg.content.split(/\s+/u)[1] || Math.floor(Math.random() * 100) +1;
+    
     if (oops <= 20){
         var oopsmsg = "You catch a part of your anatomy (we recommend you play this for laughs) — lose 1 Wound, ignoring Toughness Bonus or Armour Points.";
     }
@@ -73,8 +71,9 @@ on("chat:message", function(msg) {
     }
     sendChat(msg.who, oops + "%, " + oopsmsg);
   }
-  else if(msg.type == "api" && msg.content == ("!crithead")) {
-    var head = Math.floor(Math.random() * 100) + 1;
+  else if (msg.type === "api" && msg.content.startsWith("!crithead")) {
+    const head = msg.content.split(/\s+/u)[1] || Math.floor(Math.random() * 100) +1;
+    
     if (head <= 10){
         var headmsg = "Dramatic Injury.  A fine wound across the forehead and cheek. Gain 1 Bleeding Condition. Once the wound is healed, the impressive scar it leaves provides a bonus of +1 SL to appropriate social Tests. You can only gain this benefit once.  Take 1 wound.";
     }
@@ -156,8 +155,9 @@ on("chat:message", function(msg) {
     }
     sendChat(msg.who, head + "%, " + headmsg);
   }
-    else if(msg.type == "api" && msg.content == ("!critarm")) {
-    var arm = Math.floor(Math.random() * 100) + 1;
+  else if (msg.type === "api" && msg.content.startsWith("!critarm")) {
+    const arm = msg.content.split(/\s+/u)[1] || Math.floor(Math.random() * 100) +1;
+    
     if (arm <= 10){
         var armmsg = "Jarred Arm. Your arm is jarred in the attack. Drop whatever was held in that hand. Take 1 wound.";
     }
@@ -239,8 +239,9 @@ on("chat:message", function(msg) {
     }
     sendChat(msg.who, arm + "%, " + armmsg);
   }
-  else if(msg.type == "api" && msg.content == ("!critbody")) {
-    var body = Math.floor(Math.random() * 100) + 1;
+  else if (msg.type === "api" && msg.content.startsWith("!critbody")) {
+    const body = msg.content.split(/\s+/u)[1] || Math.floor(Math.random() * 100) +1;
+    
     if (body <= 10){
         var bodymsg = "‘Tis But A Scratch! Gain 1 Bleeding Condition. Take 1 wound.";
     }
@@ -322,8 +323,8 @@ on("chat:message", function(msg) {
     }
     sendChat(msg.who, body + "%, " + bodymsg);
   }
-    else if(msg.type == "api" && msg.content == ("!critleg")) {
-    var leg = Math.floor(Math.random() * 100) + 1;
+  else if (msg.type === "api" && msg.content.startsWith("!critleg")) {
+    const leg = msg.content.split(/\s+/u)[1] || Math.floor(Math.random() * 100) +1;
     if (leg <= 10){
         var legmsg = "Stubbed Toe. In the scuffle, you stub your toe. Pass a Routine (+20) Endurance Test or suffer –10 on Agility Tests until the end of the next turn. Take 1 wound.";
     }
@@ -409,6 +410,8 @@ on("chat:message", function(msg) {
     sendChat(msg.who, "This rudimentary script can be sluggish, but be patient.  It can greatly speed up some simple rolls for you.");
     sendChat(msg.who, "Type !critloc to determine Critical Hit Location.");
     sendChat(msg.who, "Type !crithead, !critarm, !critbody, or !critleg to roll a critical hit for the appropriate location.");
+    sendChat(msg.who, "Type !crithead x, !critarm x, !critbody x, or !critleg x to determine the outcome of a critical rolled by other means.");
+    sendChat(msg.who, "Example: !crithead 99");
     sendChat(msg.who, "Type !oops to roll an Oops! result.");
   }
  });
